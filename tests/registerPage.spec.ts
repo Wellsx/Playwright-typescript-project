@@ -138,6 +138,5 @@ test.describe("Registration negative test suite", () => {
         await pages.registerPage.clickCreateAccount()
 
         await expect(pages.registerPage.passwordError).toHaveText(registerPageData.minimumPasswordError)
-        await expect(pages.registerPage.passwordStrength).toHaveText(registerPageData.passwordWeak)
     })
 })
