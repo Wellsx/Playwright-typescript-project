@@ -1,4 +1,8 @@
 {
     "registerURL": "/customer/account/create/",
-    "title": "Create New Customer Account"
+    "title": "Create New Customer Account",
+    "requiredFIeldError": "This is a required field.",
+    "invalidEmailError": "Please enter a valid email address (Ex: johndoe@domain.com).",
+    "minimumPasswordError": "Minimum length of this field must be equal or greater than 8 symbols. Leading and trailing spaces will be ignored.",
+    "confirmPasswordError": "Please enter the same value again."
 }
