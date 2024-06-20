@@ -3,6 +3,10 @@ import * as registerPageData from "../pages/page-data/registerPageData.json"
 
 export class RegisterPage extends BasePage {
 
+    createNewAccountHeader = this.page.getByText('Create New Customer Account')
+    personalInformationHeader = this.page.getByText('Personal Information')
+    signInInformationHeader = this.page.getByText('Sign-in Information')
+
     firstNameFIeld = this.page.locator("#firstname")
     lastNameField = this.page.locator("#lastname")
     emailField = this.page.locator("#email_address")
@@ -15,9 +19,9 @@ export class RegisterPage extends BasePage {
     emailError = this.page.locator("#email_address-error")
     passwordError = this.page.locator("#password-error")
     confirmPasswordError = this.page.locator("#password-confirmation-error")
+    passwordStrength = this.page.locator("#password-strength-meter-label")
 
 async goToRegisterPage(){
-    const page = this.page
     await this.page.goto(registerPageData.registerURL)
 }
 
