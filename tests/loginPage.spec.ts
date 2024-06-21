@@ -1,15 +1,11 @@
 // @ts-check
 import { test, expect } from "../pages/pages";
 import * as registeredUser from "../pages/page-data/registeredUser.json";
-import * as myAccountPageData from "../pages/page-data/myAccountPageData.json";
-import * as loginPageData from "../pages/page-data/loginPageData.json";
-import * as registerPageData from "../pages/page-data/registerPageData.json";
 import Data from "../pages/page-data/data";
-import { Url } from "../pages/page-data/url";
-import { ErrorMessages } from "../pages/page-data/errorMessages";
+import PageData from "../pages/page-data/pageData";
 
 test.beforeEach("Navigate to Customer Login page", async ({ page, loginPage }) => {
-  await page.goto(Url.login);
+  await page.goto(PageData.Url.login);
 });
 
 test.describe("Customer Login test suite", () => {
@@ -27,8 +23,8 @@ test.describe("Customer Login test suite", () => {
     await expect(loginPage.passwordField).toHaveValue(Data.validPassword);
     await expect(loginPage.signInButton).toBeVisible();
     await loginPage.clickSignIn();
-    await expect(page).toHaveURL(Url.myAccount);
-    await expect(myAccountPage.myAccountHeader).toHaveText(myAccountPageData.myAccountHeader);
+    await expect(page).toHaveURL(PageData.Url.myAccount);
+    await expect(myAccountPage.myAccountHeader).toHaveText(PageData.PageTitle.myAccount);
   });
 
   test("Verify login with invalid credentials", async ({ page, loginPage }) => {
@@ -37,8 +33,8 @@ test.describe("Customer Login test suite", () => {
     await expect(loginPage.passwordField).toHaveValue(Data.invalidPassword);
     await expect(loginPage.signInButton).toBeVisible();
     await loginPage.clickSignIn();
-    await expect(page).not.toHaveURL(Url.myAccount);
-    await expect(loginPage.invalidLoginError).toHaveText(ErrorMessages.invalidPasswordError);
+    await expect(page).not.toHaveURL(PageData.Url.myAccount);
+    await expect(loginPage.invalidLoginError).toHaveText(PageData.ErrorMessages.invalidPasswordError);
   });
 
   test("Verify login with blank input fields", async ({ page, loginPage }) => {
@@ -47,21 +43,20 @@ test.describe("Customer Login test suite", () => {
     await expect(loginPage.passwordField).toHaveValue("");
     await expect(loginPage.signInButton).toBeVisible();
     await loginPage.clickSignIn();
-    await expect(loginPage.emailError).toHaveText(ErrorMessages.requiredFIeldError);
+    await expect(loginPage.emailError).toHaveText(PageData.ErrorMessages.requiredFIeldError);
   });
 
   test("Verify 'Create an Account' button functionality on Login Page", async ({ page, loginPage, registerPage }) => {
     await expect(loginPage.createAccountButton).toBeVisible();
     await loginPage.clickCreateAnAccount();
-    await registerPage.goToRegisterPage();
-    await expect(page).toHaveURL(Url.register);
-    await expect(page).toHaveTitle(registerPageData.title);
+    await expect(page).toHaveURL(PageData.Url.register);
+    await expect(page).toHaveTitle(PageData.PageTitle.register);
   });
 
   test("Verify 'Forgot Password?' functionality", async ({ page, loginPage, forgotPasswordPage }) => {
     await expect(loginPage.forgotPassword).toBeVisible();
     await loginPage.clickForgotPassword();
-    await expect(page).toHaveURL(Url.forgotPassword);
-    await expect(forgotPasswordPage.forgotPasswordHeader).toHaveText(loginPageData.forgotPasswordHeader);
+    await expect(page).toHaveURL(PageData.Url.forgotPassword);
+    await expect(forgotPasswordPage.forgotPasswordHeader).toHaveText(PageData.PageTitle.forgotPassword);
   });
 });

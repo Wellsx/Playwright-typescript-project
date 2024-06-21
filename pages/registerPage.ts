@@ -1,5 +1,4 @@
 import { BasePage } from "./basePage";
-import * as registerPageData from "../pages/page-data/registerPageData.json";
 
 export class RegisterPage extends BasePage {
   createNewAccountHeader = this.page.getByText("Create New Customer Account");
@@ -22,17 +21,7 @@ export class RegisterPage extends BasePage {
   confirmPasswordError = this.page.locator("#password-confirmation-error");
   passwordStrength = this.page.locator("#password-strength-meter-label");
 
-  async goToRegisterPage() {
-    await this.page.goto(registerPageData.registerURL);
-  }
-
-  async fillAccountInfo(
-    firstName: string,
-    lastName: string,
-    email: string,
-    password: string,
-    confirmPassword: string
-  ) {
+  async fillAccountInfo(firstName: string, lastName: string, email: string, password: string, confirmPassword: string) {
     await this.firstNameFIeld.fill(firstName);
     await this.lastNameField.fill(lastName);
     await this.emailField.fill(email);

@@ -1,8 +1,0 @@
-{   
-    "loginURL": "/customer/account/login/",
-    "forgotPasswordURL": "customer/account/forgotpassword/",
-    "title": "Customer Login",
-    "forgotPasswordHeader": "Forgot Your Password?",
-    "invalidLoginMessage": "The account sign-in was incorrect or your account is disabled temporarily. Please wait and try again later.",
-    "requiredFIeldError": "This is a required field."
-}

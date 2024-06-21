@@ -1,5 +1,4 @@
 import { BasePage } from "./basePage";
-import * as loginPageData from "../pages/page-data/loginPageData.json";
 
 export class LoginPage extends BasePage {
   loginHeader = this.page.getByText("Customer Login");
@@ -9,17 +8,11 @@ export class LoginPage extends BasePage {
   forgotPassword = this.page.getByRole("link", {
     name: "Forgot Your Password?",
   });
-  createAccountButton = this.page
-    .locator("#maincontent")
-    .getByRole("link", { name: "Create an Account" });
+  createAccountButton = this.page.locator("#maincontent").getByRole("link", { name: "Create an Account" });
 
   emailError = this.page.locator("#email-error");
   passwordError = this.page.locator("#pass-error");
   invalidLoginError = this.page.getByRole("alert").locator("div").first();
-
-  async goToLoginPage() {
-    await this.page.goto(loginPageData.loginURL);
-  }
 
   async fillLoginInfo(email: string, password: string) {
     await this.emailField.fill(email);
