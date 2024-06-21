@@ -7,12 +7,12 @@ import { LoginPage } from "./loginPage";
 import { ForgotPasswordPage } from "./forgotPasswordPage";
 
 export const Pages = (page: Page) => {
-    return {
-        base: new BasePage(page),
-        homePage: new HomePage(page),
-        registerPage: new RegisterPage(page),
-        myAccountPage: new MyAccountPage(page),
-        loginPage: new LoginPage(page),
-        forgotPasswordPage: new ForgotPasswordPage(page)
-    }
-}
+  return {
+    base: new BasePage(page),
+    homePage: new HomePage(page),
+    registerPage: new RegisterPage(page),
+    myAccountPage: new MyAccountPage(page),
+    loginPage: new LoginPage(page),
+    forgotPasswordPage: new ForgotPasswordPage(page),
+  };
+};
