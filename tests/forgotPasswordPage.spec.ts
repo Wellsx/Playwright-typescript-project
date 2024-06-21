@@ -1,27 +1,24 @@
 // @ts-check
-import { test, expect } from "@playwright/test";
-import { Pages } from "../pages/pages";
+import { test, expect } from "../pages/pages";
 import * as forgotPasswordData from "../pages/page-data/forgotPasswordData.json";
-
-test.beforeEach("Open Forgot Password page", async ({ page }) => {
-  const pages = Pages(page);
-  await pages.forgotPasswordPage.goToForgotPassword();
-  await expect(page).toHaveURL(forgotPasswordData.forgotPasswordURL);
-});
+import { Url } from "../pages/page-data/url";
+import { ErrorMessages } from "../pages/page-data/errorMessages";
 
 test.describe("Forgot Password test suite", () => {
-  test("Verify Forgot Password page loads correctly", async ({ page }) => {
-    const pages = Pages(page);
-    await expect(pages.forgotPasswordPage.forgotPasswordHeader).toHaveText(forgotPasswordData.forgotPasswordHeader);
-    await expect(pages.forgotPasswordPage.forgotPasswordEmail).toBeVisible();
-    await expect(pages.forgotPasswordPage.resetPasswordButton).toBeVisible();
+  test.beforeEach("Open Forgot Password page, forgotPasswordPage", async ({ page, forgotPasswordPage }) => {
+    await page.goto(Url.forgotPassword);
+    await expect(page).toHaveURL(forgotPasswordData.forgotPasswordURL);
+  });
+  test("Verify Forgot Password page, forgotPasswordPage loads correctly", async ({ page, forgotPasswordPage }) => {
+    await expect(forgotPasswordPage.forgotPasswordHeader).toHaveText(forgotPasswordData.forgotPasswordHeader);
+    await expect(forgotPasswordPage.forgotPasswordEmail).toBeVisible();
+    await expect(forgotPasswordPage.resetPasswordButton).toBeVisible();
   });
 
-  test("Verify Forgot Password blank email field", async ({ page }) => {
-    const pages = Pages(page);
-    await expect(pages.forgotPasswordPage.forgotPasswordEmail).toHaveValue("");
-    await expect(pages.forgotPasswordPage.resetPasswordButton).toBeVisible();
-    await pages.forgotPasswordPage.clickResetPassword();
-    await expect(pages.forgotPasswordPage.forgotPasswordEmailError).toHaveText(forgotPasswordData.requiredFIeldError);
+  test("Verify Forgot Password blank email field", async ({ page, forgotPasswordPage }) => {
+    await expect(forgotPasswordPage.forgotPasswordEmail).toHaveValue("");
+    await expect(forgotPasswordPage.resetPasswordButton).toBeVisible();
+    await forgotPasswordPage.clickResetPassword();
+    await expect(forgotPasswordPage.forgotPasswordEmailError).toHaveText(ErrorMessages.requiredFIeldError);
   });
 });
