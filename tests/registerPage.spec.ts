@@ -1,18 +1,18 @@
 // @ts-check
 import { test, expect } from "../pages/pages";
 import Data from "../pages/page-data/data";
-import PageData from "../pages/page-data/pageData";
+import * as pageData from "../pages/page-data/pageData";
 
 test.beforeEach("Open registration page", async ({ page, registerPage }) => {
-  await page.goto(PageData.Url.register);
-  await expect(page).toHaveURL(PageData.Url.register);
-  await expect(page).toHaveTitle(PageData.PageTitle.register);
+  await page.goto(pageData.Url.register);
+  await expect(page).toHaveURL(pageData.Url.register);
+  await expect(page).toHaveTitle(pageData.PageTitle.register);
 });
 
 test.describe("Registration positive test suite", () => {
   test("Verify registration page loads correctly", async ({ page, registerPage }) => {
-    await expect(page).toHaveURL(PageData.Url.register);
-    await expect(page).toHaveTitle(PageData.PageTitle.register);
+    await expect(page).toHaveURL(pageData.Url.register);
+    await expect(page).toHaveTitle(pageData.PageTitle.register);
     await expect(registerPage.createNewAccountHeader).toBeVisible();
     await expect(registerPage.personalInformationHeader).toBeVisible();
     await expect(registerPage.signInInformationHeader).toBeVisible();
@@ -35,8 +35,8 @@ test.describe("Registration positive test suite", () => {
     await expect(registerPage.createAccountButton).toBeVisible();
 
     await registerPage.clickCreateAccount();
-    await expect(page).toHaveURL(PageData.Url.myAccount);
-    await expect(myAccountPage.myAccountHeader).toHaveText(PageData.PageTitle.myAccount);
+    await expect(page).toHaveURL(pageData.Url.myAccount);
+    await expect(myAccountPage.myAccountHeader).toHaveText(pageData.PageTitle.myAccount);
     Data.save_email(Data.uniqueEmail);
   });
 });
@@ -52,11 +52,11 @@ test.describe("Registration negative test suite", () => {
     await expect(registerPage.createAccountButton).toBeVisible();
     await registerPage.clickCreateAccount();
 
-    await expect(registerPage.firstNameError).toHaveText(PageData.ErrorMessages.requiredFIeldError);
-    await expect(registerPage.lastNameError).toHaveText(PageData.ErrorMessages.requiredFIeldError);
-    await expect(registerPage.emailError).toHaveText(PageData.ErrorMessages.requiredFIeldError);
-    await expect(registerPage.passwordError).toHaveText(PageData.ErrorMessages.requiredFIeldError);
-    await expect(registerPage.confirmPasswordError).toHaveText(PageData.ErrorMessages.requiredFIeldError);
+    await expect(registerPage.firstNameError).toHaveText(pageData.ErrorMessages.requiredFIeldError);
+    await expect(registerPage.lastNameError).toHaveText(pageData.ErrorMessages.requiredFIeldError);
+    await expect(registerPage.emailError).toHaveText(pageData.ErrorMessages.requiredFIeldError);
+    await expect(registerPage.passwordError).toHaveText(pageData.ErrorMessages.requiredFIeldError);
+    await expect(registerPage.confirmPasswordError).toHaveText(pageData.ErrorMessages.requiredFIeldError);
   });
 
   test("Verify registration with invalid email and invalid password", async ({ page, registerPage }) => {
@@ -69,8 +69,8 @@ test.describe("Registration negative test suite", () => {
     await expect(registerPage.createAccountButton).toBeVisible();
     await registerPage.clickCreateAccount();
 
-    await expect(registerPage.emailError).toHaveText(PageData.ErrorMessages.invalidEmailError);
-    await expect(registerPage.passwordError).toHaveText(PageData.ErrorMessages.invalidPasswordError);
+    await expect(registerPage.emailError).toHaveText(pageData.ErrorMessages.invalidEmailError);
+    await expect(registerPage.passwordError).toHaveText(pageData.ErrorMessages.invalidPasswordError);
   });
 
   test("Verify registration with password mismatch", async ({ page, registerPage }) => {
@@ -83,7 +83,7 @@ test.describe("Registration negative test suite", () => {
     await expect(registerPage.createAccountButton).toBeVisible();
     await registerPage.clickCreateAccount();
 
-    await expect(registerPage.confirmPasswordError).toHaveText(PageData.ErrorMessages.confirmPasswordError);
+    await expect(registerPage.confirmPasswordError).toHaveText(pageData.ErrorMessages.confirmPasswordError);
   });
 
   test("Verify registration with weak password", async ({ page, registerPage }) => {
@@ -96,6 +96,6 @@ test.describe("Registration negative test suite", () => {
     await expect(registerPage.createAccountButton).toBeVisible();
     await registerPage.clickCreateAccount();
 
-    await expect(registerPage.passwordError).toHaveText(PageData.ErrorMessages.minimumPasswordError);
+    await expect(registerPage.passwordError).toHaveText(pageData.ErrorMessages.minimumPasswordError);
   });
 });

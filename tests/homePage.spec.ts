@@ -1,6 +1,6 @@
 // @ts-check
 import { expect, test } from "../pages/pages";
-import PageData from "../pages/page-data/pageData";
+import * as pageData from "../pages/page-data/pageData";
 
 test.describe("Home Page test suite", () => {
   test.beforeEach("Visit home page", async ({ page, homePage }) => {
@@ -35,14 +35,14 @@ test.describe("Home Page test suite", () => {
   test("Verify click on 'Create an Account' button loads registration page correctly", async ({ page, homePage }) => {
     await expect(homePage.createAccountButton).toBeVisible();
     await homePage.clickCreateAccount();
-    await expect(page).toHaveURL(PageData.Url.register);
-    await expect(page).toHaveTitle(PageData.PageTitle.register);
+    await expect(page).toHaveURL(pageData.Url.register);
+    await expect(page).toHaveTitle(pageData.PageTitle.register);
   });
 
   test("Verify click on the 'Sign In' button loads Sign in page correctly", async ({ page, homePage }) => {
     await expect(homePage.signInButton).toBeVisible();
     await homePage.clickSignIn();
-    await expect(page.url()).toContain(PageData.Url.login);
-    await expect(page).toHaveTitle(PageData.PageTitle.login);
+    await expect(page.url()).toContain(pageData.Url.login);
+    await expect(page).toHaveTitle(pageData.PageTitle.login);
   });
 });
