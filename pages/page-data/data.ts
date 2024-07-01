@@ -1,4 +1,4 @@
-import { faker } from "@faker-js/faker";
+import { faker } from '@faker-js/faker';
 import moment from "moment";
 import fs from "fs";
 import path from "path";

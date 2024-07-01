@@ -6,4 +6,4 @@ export class BasePage {
   }
 }
 
-export { expect, Page } from "@playwright/test";
+export { expect, Page, Locator } from "@playwright/test";

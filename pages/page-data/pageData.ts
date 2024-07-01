@@ -3,6 +3,8 @@ export const Url = {
   login: "/customer/account/login/",
   forgotPassword: "customer/account/forgotpassword/",
   myAccount: "/customer/account/",
+  women: "/women.html",
+  womenTops: "/women/tops-women.html"
 };
 
 export const ErrorMessages = {
@@ -22,4 +24,32 @@ export const PageTitle = {
   register: "Create New Customer Account",
   myAccount: "My Account ",
   forgotPassword: "Forgot Your Password?",
+  women: "Women",
+  womenTops: "Tops - Women",
 };
+
+export const NavID = {
+  womenTops: 9,
+  womenBottoms: 10,
+  womenTopsIDs: [11, 12, 13, 14],
+  womenTopLinks: ["Jackets", "Hoodies & Sweatshirts", "Tees", "Bras & Tanks"],
+  womenBottomIDs: [15, 16],
+  bottomLinks: ["Pants", "Shorts"],
+  womenPants: 15,
+  womenShorts: 16,
+
+  menTops: 17,
+  menBottoms: 18,
+  menJackets: 19,
+  menHoodies: 20,
+  menTees: 21,
+  menTanks: 22,
+  menPants: 23,
+  menShorts: 24,
+
+  bags: 25,
+  fitnessEq: 26, 
+  watches: 27,
+
+
+}

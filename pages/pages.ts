@@ -4,6 +4,8 @@ import { RegisterPage } from "./registerPage";
 import { MyAccountPage } from "./myAccountPage";
 import { LoginPage } from "./loginPage";
 import { ForgotPasswordPage } from "./forgotPasswordPage";
+import { CommonActions } from "./commonActions";
+import { NavBar } from "./navBar";
 
 type MyFixtures = {
   homePage: HomePage;
@@ -11,6 +13,8 @@ type MyFixtures = {
   myAccountPage: MyAccountPage;
   loginPage: LoginPage;
   forgotPasswordPage: ForgotPasswordPage;
+  commonActions: CommonActions;
+  navBar: NavBar;
 };
 
 export const test = base.extend<MyFixtures>({
@@ -34,6 +38,14 @@ export const test = base.extend<MyFixtures>({
     const forgotPasswordPage = new ForgotPasswordPage(page);
     await use(forgotPasswordPage);
   },
+  commonActions: async ({ page }, use) => {
+    const commonActions = new CommonActions(page);
+    await use(commonActions);
+  },
+  navBar: async ({ page }, use) => {
+    const navBar = new NavBar(page);
+    await use(navBar);
+  }
 });
 
 export { expect, request } from "@playwright/test";

@@ -1,3 +1,4 @@
 {
-    "javascript.format.insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces": true
+    "javascript.format.insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces": true,
+    "prettier.enable": true
 }

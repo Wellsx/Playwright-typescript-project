@@ -1,4 +1,4 @@
-import { BasePage } from "./basePage";
+import { BasePage, Locator } from "./basePage";
 
 export class HomePage extends BasePage {
   signInButton = this.page.getByRole("link", { name: "Sign In" });
@@ -7,12 +7,7 @@ export class HomePage extends BasePage {
   searchBar = this.page.locator("#search");
   searchButton = this.page.getByRole("button", { name: "Search" });
   searchOptions = this.page.locator("#search_autocomplete");
-  navButtonNew = this.page.locator("#ui-id-3");
-  navButtonWomen = this.page.locator("#ui-id-4");
-  navButtonMen = this.page.locator("#ui-id-5");
-  navButtonGear = this.page.locator("#ui-id-6");
-  navButtonTraining = this.page.locator("#ui-id-7");
-  navButtonSale = this.page.locator("#ui-id-8");
+  
   mainCard = this.page.locator(".home-main");
   pantsCard = this.page.locator(".home-pants");
   tShirtCard = this.page.locator(".home-t-shirts");
@@ -37,4 +32,6 @@ export class HomePage extends BasePage {
   async fillSearch(query: string) {
     await this.searchBar.fill(query);
   }
+
+
 }

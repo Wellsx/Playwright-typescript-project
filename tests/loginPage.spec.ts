@@ -4,11 +4,11 @@ import * as registeredUser from "../pages/page-data/registeredUser.json";
 import Data from "../pages/page-data/data";
 import * as pageData from "../pages/page-data/pageData";
 
-test.beforeEach("Navigate to Customer Login page", async ({ page, loginPage }) => {
-  await page.goto(pageData.Url.login);
-});
-
 test.describe("Customer Login test suite", () => {
+  test.beforeEach("Navigate to Customer Login page", async ({ page, loginPage }) => {
+    await page.goto(pageData.Url.login);
+  });
+
   test("Verify Login page loads correctly", async ({ loginPage }) => {
     await expect(loginPage.loginHeader).toBeVisible();
     await expect(loginPage.emailField).toBeVisible();
@@ -60,7 +60,7 @@ test.describe("Customer Login test suite", () => {
     await expect(forgotPasswordPage.forgotPasswordHeader).toHaveText(pageData.PageTitle.forgotPassword);
   });
 
-  test("Verify logout functionality", async ({ page, loginPage }) => {
+  test("Verify logout functionality", async ({ page, loginPage, commonActions, browser }) => {
     await loginPage.fillLoginInfo(registeredUser.email, Data.validPassword);
     await loginPage.clickSignIn();
     await expect(loginPage.navbarDropDownButton).toBeVisible();

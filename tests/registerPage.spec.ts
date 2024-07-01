@@ -3,7 +3,7 @@ import { test, expect } from "../pages/pages";
 import Data from "../pages/page-data/data";
 import * as pageData from "../pages/page-data/pageData";
 
-test.beforeEach("Open registration page", async ({ page, registerPage }) => {
+test.beforeEach("Open registration page", async ({ page }) => {
   await page.goto(pageData.Url.register);
   await expect(page).toHaveURL(pageData.Url.register);
   await expect(page).toHaveTitle(pageData.PageTitle.register);
@@ -42,7 +42,7 @@ test.describe("Registration positive test suite", () => {
 });
 
 test.describe("Registration negative test suite", () => {
-  test("Verify registration with blank input fields", async ({ page, registerPage }) => {
+  test("Verify registration with blank input fields", async ({ registerPage }) => {
     await registerPage.fillAccountInfo("", "", "", "", "");
     await expect(registerPage.firstNameFIeld).toHaveValue("");
     await expect(registerPage.lastNameField).toHaveValue("");
@@ -59,7 +59,7 @@ test.describe("Registration negative test suite", () => {
     await expect(registerPage.confirmPasswordError).toHaveText(pageData.ErrorMessages.requiredFIeldError);
   });
 
-  test("Verify registration with invalid email and invalid password", async ({ page, registerPage }) => {
+  test("Verify registration with invalid email and invalid password", async ({ registerPage }) => {
     await registerPage.fillAccountInfo(Data.firstName, Data.lastName, Data.invalidEmail, Data.invalidPassword, Data.invalidPassword);
     await expect(registerPage.firstNameFIeld).toHaveValue(Data.firstName);
     await expect(registerPage.lastNameField).toHaveValue(Data.lastName);
@@ -73,7 +73,7 @@ test.describe("Registration negative test suite", () => {
     await expect(registerPage.passwordError).toHaveText(pageData.ErrorMessages.invalidPasswordError);
   });
 
-  test("Verify registration with password mismatch", async ({ page, registerPage }) => {
+  test("Verify registration with password mismatch", async ({ registerPage }) => {
     await registerPage.fillAccountInfo(Data.firstName, Data.lastName, Data.uniqueEmail, Data.validPassword, Data.invalidPassword);
     await expect(registerPage.firstNameFIeld).toHaveValue(Data.firstName);
     await expect(registerPage.lastNameField).toHaveValue(Data.lastName);
@@ -86,7 +86,7 @@ test.describe("Registration negative test suite", () => {
     await expect(registerPage.confirmPasswordError).toHaveText(pageData.ErrorMessages.confirmPasswordError);
   });
 
-  test("Verify registration with weak password", async ({ page, registerPage }) => {
+  test("Verify registration with weak password", async ({ registerPage }) => {
     await registerPage.fillAccountInfo(Data.firstName, Data.lastName, Data.uniqueEmail, Data.shortPassword, Data.shortPassword);
     await expect(registerPage.firstNameFIeld).toHaveValue(Data.firstName);
     await expect(registerPage.lastNameField).toHaveValue(Data.lastName);
