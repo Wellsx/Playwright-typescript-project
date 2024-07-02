@@ -2,15 +2,12 @@
 import { expect, test } from "../pages/pages";
 import * as pageData from "../pages/page-data/pageData";
 
-
-
+test.beforeEach("Visit home page", async ({page}) => {
+    await page.goto("/");
+    await expect(page).toHaveURL("/");
+    await expect(page).toHaveTitle("Home Page");
+})
 test.describe("Nav bar 'Women' submenu test suite", () => {
-    test.beforeEach("Visit home page", async ({page}) => {
-        await page.goto("/");
-        await expect(page).toHaveURL("/");
-        await expect(page).toHaveTitle("Home Page");
-    })
-
     test("Verify all 'Women' submenu hover links are present", async ({page, navBar}) => {
         await navBar.hover(navBar.navButtonWomen)
         await navBar.hover(navBar.navHoverMenu(pageData.NavID.womenTops))
@@ -75,6 +72,99 @@ test.describe("Nav bar 'Women' submenu test suite", () => {
             await expect(page).toHaveURL(urls[i])
             await expect(cataloguePage.headerName).toHaveText(headerText[i])
         }
+    })
+})
+test.describe("Nav bar 'Men' submenu test suite", () => {
+    test("Verify all 'Men' submenu hover links are present", async ({page, navBar}) => {
+        await navBar.hover(navBar.navButtonMen)
+        await navBar.hover(navBar.navHoverMenu(pageData.NavID.menTops))
+        const topIDs = pageData.NavID.menTopsIDs
+        const topLinks = pageData.NavID.menTopLinks
+        for( let i = 0; i < topIDs.length; i++){
+            const id = topIDs[i];
+            const linkText = topLinks[i]
+            const submenuLocator = navBar.navHoverMenu(id)
+            await expect(submenuLocator).toBeVisible()
+            await expect(submenuLocator).toHaveText(linkText)
+        }
+        await navBar.hover(navBar.navHoverMenu(pageData.NavID.menBottoms))
+        const bottomIDs = pageData.NavID.menBottomIDs
+        const bottomLinks = pageData.NavID.bottomLinks
+        for( let i = 0; i < bottomIDs.length; i++){
+            const id = bottomIDs[i]
+            const linkText = bottomLinks[i]
+            const submenuLocator = navBar.navHoverMenu(id)
+            await expect(submenuLocator).toBeVisible()
+            await expect(submenuLocator).toHaveText(linkText)
+        }
+    })
+    test("Verify 'Men' link", async ({page, navBar}) => {
+        await expect(navBar.navButtonMen).toBeVisible()
+        await navBar.navButtonMen.click()
+        await expect(page).toHaveURL(pageData.Url.men)
+        await expect(page).toHaveTitle(pageData.PageTitle.men)
+    })
+    test("Verify 'Tops' links", async ({page, navBar, cataloguePage}) => {
+        const urls = pageData.Url.menTopsLinks
+        const topIDs = pageData.NavID.menTopsIDs
+        const headerText = pageData.NavID.menTopLinks
+        await navBar.hover(navBar.navButtonMen)
+        await navBar.navHoverMenu(pageData.NavID.menTops).click()
+        await expect (page).toHaveURL(pageData.Url.menTops)
+        for( let i = 0; i < topIDs.length; i++){
+            await navBar.hover(navBar.navButtonMen)
+            await navBar.hover(navBar.navHoverMenu(pageData.NavID.menTops))
+            const id = topIDs[i];
+            const submenuLocator = navBar.navHoverMenu(id)
+            await submenuLocator.click()
+            await expect(page).toHaveURL(urls[i])
+            await expect(cataloguePage.headerName).toHaveText(headerText[i])
+        }        
+    })
+    test("Verify 'Bottoms' links", async ({page, navBar, cataloguePage}) => {
+        const urls = pageData.Url.menBottomsLinks
+        const bottomIDs = pageData.NavID.menBottomIDs
+        const headerText = pageData.NavID.bottomLinks
+        await navBar.hover(navBar.navButtonMen)
+        await navBar.navHoverMenu(pageData.NavID.menBottoms).click()
+        await expect(page).toHaveURL(pageData.Url.menBottoms)
+        for(let i = 0; i < bottomIDs.length; i++){
+            await navBar.hover(navBar.navButtonMen)
+            await navBar.hover(navBar.navHoverMenu(pageData.NavID.menBottoms))
+            const id = bottomIDs[i];
+            const submenuLocator = navBar.navHoverMenu(id)
+            await submenuLocator.click()
+            await expect(page).toHaveURL(urls[i])
+            await expect(cataloguePage.headerName).toHaveText(headerText[i])
+        }
+    })
+})
 
+test.describe("Nav bar 'Gear' submenu test suite", () => {
+    test("Verify all 'Gear' submenu hover links are present", async ({page, navBar}) => {
+        await navBar.hover(navBar.navButtonGear)
+        const gearID = pageData.NavID.gearIDs
+        const links = pageData.NavID.gearLinks
+        for( let i = 0; i < gearID.length; i++){
+            const id = gearID[i];
+            const linkText = links[i]
+            const submenuLocator = navBar.navHoverMenu(id)
+            await expect(submenuLocator).toBeVisible()
+            await expect(submenuLocator).toHaveText(linkText)
+        }
+    })
+    test("Verify 'Gear' pages load correctly", async ({page, navBar, cataloguePage}) => {
+        const urls = pageData.Url.gearLinks
+        const gearIDs = pageData.NavID.gearIDs
+        const headerText = pageData.NavID.gearLinks
+        await navBar.hover(navBar.navButtonGear)
+        for( let i = 0; i < gearIDs.length; i++){
+            await navBar.hover(navBar.navButtonGear)
+            const id = gearIDs[i];
+            const submenuLocator = navBar.navHoverMenu(id)
+            await submenuLocator.click()
+            await expect(page).toHaveURL(urls[i])
+            await expect(cataloguePage.headerName).toHaveText(headerText[i])
+        }        
     })
 })

@@ -8,7 +8,16 @@ export const Url = {
   womenTopsLinks: ["women/tops-women/jackets-women.html", "women/tops-women/hoodies-and-sweatshirts-women.html",
     "women/tops-women/tees-women.html", "women/tops-women/tanks-women.html"],
   womenBottoms: "/women/bottoms-women.html",
-  womenBottomsLinks: ["/women/bottoms-women/pants-women.html", "/women/bottoms-women/shorts-women.html"]
+  womenBottomsLinks: ["/women/bottoms-women/pants-women.html", "/women/bottoms-women/shorts-women.html"],
+  men: "/men.html",
+  menTops: "/men/tops-men.html",
+  menBottoms: "/men/bottoms-men.html",
+  menTopsLinks: ["men/tops-men/jackets-men.html", "men/tops-men/hoodies-and-sweatshirts-men.html",
+    "men/tops-men/tees-men.html", "men/tops-men/tanks-men.html"],
+  menBottomsLinks: ["/men/bottoms-men/pants-men.html", "/men/bottoms-men/shorts-men.html"],
+  gear: "/gear.html",
+  gearLinks: ["/gear/bags.html", "/gear/fitness-equipment.html", "/gear/watches.html"]
+
 };
 
 export const ErrorMessages = {
@@ -28,6 +37,8 @@ export const PageTitle = {
   register: "Create New Customer Account",
   myAccount: "My Account ",
   forgotPassword: "Forgot Your Password?",
+  gear: "Gear",
+  men: "Men",
   women: "Women",
   womenTops: "Tops - Women",
   womenTopsTitles: ["Jackets - Tops - Women", "Hoodies & Sweatshirts - Tops - Women", "Tees - Tops - Women", 
@@ -47,10 +58,8 @@ export const NavID = {
   menTopsIDs: [19, 20, 21, 22],
   menTopLinks: ["Jackets", "Hoodies & Sweatshirts", "Tees", "Tanks"],
   menBottomIDs: [23, 24],
-
-  bags: 25,
-  fitnessEq: 26, 
-  watches: 27,
+  gearIDs: [25, 26, 27],
+  gearLinks: ["Bags", "Fitness Equipment", "Watches"]
 
 
 }
