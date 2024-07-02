@@ -6,6 +6,7 @@ import { LoginPage } from "./loginPage";
 import { ForgotPasswordPage } from "./forgotPasswordPage";
 import { CommonActions } from "./commonActions";
 import { NavBar } from "./navBar";
+import { CataloguePage } from "./cataloguePage";
 
 type MyFixtures = {
   homePage: HomePage;
@@ -15,6 +16,7 @@ type MyFixtures = {
   forgotPasswordPage: ForgotPasswordPage;
   commonActions: CommonActions;
   navBar: NavBar;
+  cataloguePage: CataloguePage;
 };
 
 export const test = base.extend<MyFixtures>({
@@ -45,6 +47,10 @@ export const test = base.extend<MyFixtures>({
   navBar: async ({ page }, use) => {
     const navBar = new NavBar(page);
     await use(navBar);
+  },
+  cataloguePage: async ({ page }, use) => {
+    const cataloguePage = new CataloguePage(page);
+    await use(cataloguePage);
   }
 });
 
