@@ -168,3 +168,12 @@ test.describe("Nav bar 'Gear' submenu test suite", () => {
         }        
     })
 })
+
+test.describe("Nav bar 'Sale' submenu test suite", () => {
+    test("Verify 'Sale' page loads correctly", async ({page, navBar, cataloguePage}) => {
+        await expect(navBar.navButtonSale).toBeVisible()
+        await navBar.navButtonSale.click()
+        await expect(page).toHaveURL(pageData.Url.sale)
+        await expect(cataloguePage.headerName).toHaveText(pageData.NavID.sale)
+    })
+    })

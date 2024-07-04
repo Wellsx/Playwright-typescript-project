@@ -16,7 +16,9 @@ export const Url = {
     "men/tops-men/tees-men.html", "men/tops-men/tanks-men.html"],
   menBottomsLinks: ["/men/bottoms-men/pants-men.html", "/men/bottoms-men/shorts-men.html"],
   gear: "/gear.html",
-  gearLinks: ["/gear/bags.html", "/gear/fitness-equipment.html", "/gear/watches.html"]
+  gearLinks: ["/gear/bags.html", "/gear/fitness-equipment.html", "/gear/watches.html"],
+  sale: "/sale.html",
+  search: "/catalogsearch/result/?q="
 
 };
 
@@ -29,6 +31,7 @@ export const ErrorMessages = {
   confirmPasswordError: "Please enter the same value again.",
   passwordWeak: "Weak",
   invalidLoginMessage: "The account sign-in was incorrect or your account is disabled temporarily. Please wait and try again later.",
+  invalidSearch: "Minimum Search query length is 3 "
 };
 
 export const PageTitle = {
@@ -59,7 +62,10 @@ export const NavID = {
   menTopLinks: ["Jackets", "Hoodies & Sweatshirts", "Tees", "Tanks"],
   menBottomIDs: [23, 24],
   gearIDs: [25, 26, 27],
-  gearLinks: ["Bags", "Fitness Equipment", "Watches"]
+  gearLinks: ["Bags", "Fitness Equipment", "Watches"],
+  sale: "Sale"
+}
 
-
+export const pageInfo = {
+  searchHeader: "Search results for: "
 }

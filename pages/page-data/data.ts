@@ -14,13 +14,16 @@ class Data {
     return num;
   }
 
-  firstName = faker.person.firstName();
-  lastName = faker.person.lastName();
-  uniqueEmail = "test_" + this.getUnixTimeStamp() + "@tester.com";
-  validPassword = "Password123";
-  invalidPassword = "password1";
-  shortPassword = "Pass12";
-  invalidEmail = "invalidmail.com";
+  public readonly firstName = faker.person.firstName();
+  public readonly lastName = faker.person.lastName();
+  public readonly uniqueEmail = "test_" + this.getUnixTimeStamp() + "@tester.com";
+  public readonly validPassword = "Password123";
+  public readonly invalidPassword = "password1";
+  public readonly shortPassword = "Pass12";
+  public readonly invalidEmail = "invalidmail.com";
+
+  public readonly searchQuery = "T-shirt";
+  public readonly invalidQuery = "iq";
 
   save_email(email: string) {
     const user = { email: email };

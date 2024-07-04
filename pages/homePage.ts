@@ -33,5 +33,8 @@ export class HomePage extends BasePage {
     await this.searchBar.fill(query);
   }
 
+  async clickSearch(){
+    await this.searchButton.click()
+  }
 
 }
