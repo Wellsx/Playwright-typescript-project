@@ -31,10 +31,12 @@ export const ErrorMessages = {
   confirmPasswordError: "Please enter the same value again.",
   passwordWeak: "Weak",
   invalidLoginMessage: "The account sign-in was incorrect or your account is disabled temporarily. Please wait and try again later.",
-  invalidSearch: "Minimum Search query length is 3 "
+  invalidSearch: "Minimum Search query length is 3 ",
+  qtyError: "Please enter a quantity greater than 0."
 };
 
 export const PageTitle = {
+  home: "Home Page",
   login: "Customer Login",
   signOut: "You are signed out",
   register: "Create New Customer Account",
@@ -68,4 +70,12 @@ export const NavID = {
 
 export const pageInfo = {
   searchHeader: "Search results for: "
+}
+
+export const catalogueItem = {
+  tank: "Cassius Sparring Tank"
+}
+
+export const itemPage = {
+  size: ["XS", "S", "M", "L", "XL"]
 }

@@ -5,8 +5,9 @@ import Data from "../pages/page-data/data";
 import * as pageData from "../pages/page-data/pageData";
 
 test.describe("Customer Login test suite", () => {
-  test.beforeEach("Navigate to Customer Login page", async ({ page, loginPage }) => {
+  test.beforeEach("Navigate to Customer Login page", async ({ page, commonActions }) => {
     await page.goto(pageData.Url.login);
+    await commonActions.verifyPage(pageData.Url.login, pageData.PageTitle.login, page)
   });
 
   test("Verify Login page loads correctly", async ({ loginPage }) => {
@@ -21,7 +22,6 @@ test.describe("Customer Login test suite", () => {
     await loginPage.fillLoginInfo(registeredUser.email, Data.validPassword);
     await expect(loginPage.emailField).toHaveValue(registeredUser.email);
     await expect(loginPage.passwordField).toHaveValue(Data.validPassword);
-    await expect(loginPage.signInButton).toBeVisible();
     await loginPage.clickSignIn();
     await expect(page).toHaveURL(pageData.Url.myAccount);
     await expect(myAccountPage.myAccountHeader).toHaveText(pageData.PageTitle.myAccount);
@@ -31,7 +31,6 @@ test.describe("Customer Login test suite", () => {
     await loginPage.fillLoginInfo(registeredUser.email, Data.invalidPassword);
     await expect(loginPage.emailField).toHaveValue(registeredUser.email);
     await expect(loginPage.passwordField).toHaveValue(Data.invalidPassword);
-    await expect(loginPage.signInButton).toBeVisible();
     await loginPage.clickSignIn();
     await expect(page).not.toHaveURL(pageData.Url.myAccount);
     await expect(loginPage.invalidLoginError).toHaveText(pageData.ErrorMessages.invalidPasswordError);
@@ -41,20 +40,17 @@ test.describe("Customer Login test suite", () => {
     await loginPage.fillLoginInfo("", "");
     await expect(loginPage.emailField).toHaveValue("");
     await expect(loginPage.passwordField).toHaveValue("");
-    await expect(loginPage.signInButton).toBeVisible();
     await loginPage.clickSignIn();
     await expect(loginPage.emailError).toHaveText(pageData.ErrorMessages.requiredFIeldError);
   });
 
   test("Verify 'Create an Account' button functionality on Login Page", async ({ page, loginPage, registerPage }) => {
-    await expect(loginPage.createAccountButton).toBeVisible();
     await loginPage.clickCreateAnAccount();
     await expect(page).toHaveURL(pageData.Url.register);
     await expect(page).toHaveTitle(pageData.PageTitle.register);
   });
 
   test("Verify 'Forgot Password?' functionality", async ({ page, loginPage, forgotPasswordPage }) => {
-    await expect(loginPage.forgotPassword).toBeVisible();
     await loginPage.clickForgotPassword();
     await expect(page).toHaveURL(pageData.Url.forgotPassword);
     await expect(forgotPasswordPage.forgotPasswordHeader).toHaveText(pageData.PageTitle.forgotPassword);
@@ -63,9 +59,7 @@ test.describe("Customer Login test suite", () => {
   test("Verify logout functionality", async ({ page, loginPage, commonActions, browser }) => {
     await loginPage.fillLoginInfo(registeredUser.email, Data.validPassword);
     await loginPage.clickSignIn();
-    await expect(loginPage.navbarDropDownButton).toBeVisible();
     await loginPage.openDropDownMenu();
-    await expect(loginPage.signOutButton).toBeVisible();
     await loginPage.clickSignOut();
     await loginPage.signOutHeader.isVisible();
     expect(loginPage.signOutHeader).toHaveText(pageData.PageTitle.signOut);

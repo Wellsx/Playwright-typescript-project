@@ -3,10 +3,9 @@ import { expect, test } from "../pages/pages";
 import * as pageData from "../pages/page-data/pageData";
 
 test.describe("Home Page test suite", () => {
-  test.beforeEach("Visit home page", async ({ page }) => {
+  test.beforeEach("Visit home page", async ({ page, commonActions }) => {
     await page.goto("/");
-    await expect(page).toHaveURL("/");
-    await expect(page).toHaveTitle("Home Page");
+    await commonActions.verifyPage("", pageData.PageTitle.home, page)
   });
 
   test("Verify home page components load correctly", async ({ homePage, navBar }) => {

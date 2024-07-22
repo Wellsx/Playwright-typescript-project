@@ -3,10 +3,9 @@ import Data from "../pages/page-data/data"
 import * as pageData from "../pages/page-data/pageData"
 
 test.describe("Search functionality test suite", () => {
-    test.beforeEach("Visit home page", async ({ page }) => {
+    test.beforeEach("Visit home page", async ({ page, commonActions }) => {
         await page.goto("/");
-        await expect(page).toHaveURL("/");
-        await expect(page).toHaveTitle("Home Page");
+        await commonActions.verifyPage("", pageData.PageTitle.home, page)
       });
 
     test("Verify search functionality works correctly", async ({page, homePage, cataloguePage}) => {

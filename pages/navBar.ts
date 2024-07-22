@@ -1,4 +1,5 @@
-import { BasePage, Locator } from "./basePage"
+import { BasePage, expect, Locator } from "./basePage"
+import * as pageData from "../pages/page-data/pageData";
 
 export class NavBar extends BasePage {
     navButtonNew = this.page.locator("#ui-id-3");
@@ -10,6 +11,7 @@ export class NavBar extends BasePage {
     navHoverMenu = (id: number) => this.page.locator("#ui-id-"+ id) 
 
     async hover(navButton: Locator){
+        await expect(navButton).toBeVisible()
         await navButton.hover()
     }
 

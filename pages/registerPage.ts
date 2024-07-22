@@ -1,4 +1,4 @@
-import { BasePage } from "./basePage";
+import { BasePage, expect } from "./basePage";
 
 export class RegisterPage extends BasePage {
   createNewAccountHeader = this.page.getByText("Create New Customer Account");
@@ -22,6 +22,11 @@ export class RegisterPage extends BasePage {
   passwordStrength = this.page.locator("#password-strength-meter-label");
 
   async fillAccountInfo(firstName: string, lastName: string, email: string, password: string, confirmPassword: string) {
+    const fields = [this.firstNameFIeld, this.lastNameField, this.emailField, this.passwordField, this.confirmPasswordField]
+    for (let i = 0; i < fields.length; i++) {
+      const field = fields[i];
+      await expect(field).toBeVisible()   
+    }
     await this.firstNameFIeld.fill(firstName);
     await this.lastNameField.fill(lastName);
     await this.emailField.fill(email);
@@ -30,6 +35,7 @@ export class RegisterPage extends BasePage {
   }
 
   async clickCreateAccount() {
+    await expect(this.createAccountButton).toBeVisible()
     this.createAccountButton.click();
   }
 }

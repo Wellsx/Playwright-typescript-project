@@ -1,5 +1,4 @@
-import { BasePage } from "./basePage";
-import { BrowserContext } from "@playwright/test";
+import { BasePage, expect } from "./basePage";
 
 export class LoginPage extends BasePage {
   loginHeader = this.page.getByText("Customer Login");
@@ -28,22 +27,27 @@ export class LoginPage extends BasePage {
   }
 
   async clickSignIn() {
+    await expect(this.signInButton).toBeVisible()
     await this.signInButton.click();
   }
 
   async clickCreateAnAccount() {
+    await expect(this.createAccountButton).toBeVisible()
     await this.createAccountButton.click();
   }
 
   async clickForgotPassword() {
+    await expect(this.forgotPassword).toBeVisible()
     await this.forgotPassword.click();
   }
 
   async openDropDownMenu() {
+    await expect(this.navbarDropDownButton).toBeVisible()
     await this.navbarDropDownButton.click();
   }
 
   async clickSignOut() {
+    await expect(this.signOutButton).toBeVisible()
     await this.signOutButton.click();
   }
 }

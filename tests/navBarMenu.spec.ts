@@ -2,13 +2,12 @@
 import { expect, test } from "../pages/pages";
 import * as pageData from "../pages/page-data/pageData";
 
-test.beforeEach("Visit home page", async ({page}) => {
+test.beforeEach("Visit home page", async ({page, commonActions}) => {
     await page.goto("/");
-    await expect(page).toHaveURL("/");
-    await expect(page).toHaveTitle("Home Page");
+    await commonActions.verifyPage("", pageData.PageTitle.home, page)
 })
 test.describe("Nav bar 'Women' submenu test suite", () => {
-    test("Verify all 'Women' submenu hover links are present", async ({page, navBar}) => {
+    test("Verify all 'Women' submenu hover links are present", async ({navBar}) => {
         await navBar.hover(navBar.navButtonWomen)
         await navBar.hover(navBar.navHoverMenu(pageData.NavID.womenTops))
         const topIDs = pageData.NavID.womenTopsIDs
