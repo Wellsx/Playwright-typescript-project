@@ -8,6 +8,7 @@ import { CommonActions } from "./commonActions";
 import { NavBar } from "./navBar";
 import { CataloguePage } from "./cataloguePage";
 import { ItemPage } from "./itemPage";
+import { CartPage } from "./cartPage";
 
 type MyFixtures = {
   homePage: HomePage;
@@ -19,6 +20,7 @@ type MyFixtures = {
   navBar: NavBar;
   cataloguePage: CataloguePage;
   itemPage: ItemPage;
+  cartPage: CartPage
 };
 
 export const test = base.extend<MyFixtures>({
@@ -57,7 +59,11 @@ export const test = base.extend<MyFixtures>({
   itemPage: async ({page}, use) => {
     const itemPage = new ItemPage(page);
     await use(itemPage);
+  },
+  cartPage: async ({page}, use) => {
+    const cartPage = new CartPage(page);
+    await use(cartPage);
   }
 });
 
-export { expect, request } from "@playwright/test";
+export { expect, request, Page } from "@playwright/test";

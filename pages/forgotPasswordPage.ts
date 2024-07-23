@@ -1,14 +1,12 @@
 import { BasePage } from "./basePage";
 
 export class ForgotPasswordPage extends BasePage {
-  forgotPasswordHeader = this.page.getByText("Forgot Your Password?");
-  forgotPasswordEmail = this.page.locator("#email_address");
-  resetPasswordButton = this.page.getByRole("button", {
-    name: "Reset My Password",
-  });
-  forgotPasswordEmailError = this.page.locator("#email_address-error");
+  public readonly forgotPasswordHeader = this.page.getByText("Forgot Your Password?");
+  public readonly forgotPasswordEmail = this.page.locator("#email_address");
+  public readonly resetPasswordButton = this.page.getByRole("button", {name: "Reset My Password"});
+  public readonly forgotPasswordEmailError = this.page.locator("#email_address-error");
 
-  async clickResetPassword() {
+  async clickResetPassword(): Promise<void> {
     await this.resetPasswordButton.click();
   }
 }

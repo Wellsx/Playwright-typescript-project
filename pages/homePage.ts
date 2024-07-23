@@ -1,39 +1,40 @@
-import { BasePage, Locator } from "./basePage";
+import { BasePage } from "./basePage";
 
 export class HomePage extends BasePage {
-  signInButton = this.page.getByRole("link", { name: "Sign In" });
-  createAccountButton = this.page.getByRole("link", { name: "Create an Account" });
-  cartButton = this.page.getByRole("link", { name: " My Cart" });
-  searchBar = this.page.locator("#search");
-  searchButton = this.page.getByRole("button", { name: "Search" });
-  searchOptions = this.page.locator("#search_autocomplete");
-  
-  mainCard = this.page.locator(".home-main");
-  pantsCard = this.page.locator(".home-pants");
-  tShirtCard = this.page.locator(".home-t-shirts");
-  erinCard = this.page.locator(".home-erin");
-  performanceCard = this.page.locator(".home-performance");
-  ecoCard = this.page.locator(".home-eco");
-  hotSellersHeader = this.page.getByRole("heading", { name: "Hot Sellers" });
-  productGrid = this.page.locator(".product-items");
+  public readonly signInButton = this.page.getByRole("link", { name: "Sign In" });
+  public readonly createAccountButton = this.page.getByRole("link", { name: "Create an Account" });
+  public readonly cartButton = this.page.getByRole("link", { name: " My Cart" });
+  //search
+  public readonly searchBar = this.page.locator("#search");
+  public readonly searchButton = this.page.getByRole("button", { name: "Search" });
+  public readonly searchOptions = this.page.locator("#search_autocomplete");
+  //cards
+  public readonly mainCard = this.page.locator(".home-main");
+  public readonly pantsCard = this.page.locator(".home-pants");
+  public readonly tShirtCard = this.page.locator(".home-t-shirts");
+  public readonly erinCard = this.page.locator(".home-erin");
+  public readonly performanceCard = this.page.locator(".home-performance");
+  public readonly ecoCard = this.page.locator(".home-eco");
+  public readonly hotSellersHeader = this.page.getByRole("heading", { name: "Hot Sellers" });
+  public readonly productGrid = this.page.locator(".product-items");
 
-  async goToHome() {
+  async goToHome(): Promise<void> {
     await this.page.goto("/");
   }
 
-  async clickCreateAccount() {
+  async clickCreateAccount(): Promise<void> {
     await this.createAccountButton.click();
   }
 
-  async clickSignIn() {
+  async clickSignIn(): Promise<void> {
     await this.signInButton.click();
   }
 
-  async fillSearch(query: string) {
+  async fillSearch(query: string): Promise<void> {
     await this.searchBar.fill(query);
   }
 
-  async clickSearch(){
+  async clickSearch(): Promise<void> {
     await this.searchButton.click()
   }
 

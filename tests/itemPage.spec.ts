@@ -1,17 +1,23 @@
 import {expect, test} from "../pages/pages"
 import * as pageData from "../pages/page-data/pageData";
+import { randomInt } from "crypto";
 
 test.describe("Item Page test suite", () => {
-    test.beforeEach("Visit home page", async ({ cataloguePage, page }) => {
+
+    let pageTitle: string;
+
+    test.beforeEach("Select a random item from the catalogue", async ({ cataloguePage, page }) => {
         await page.goto(pageData.Url.menTops)
         await expect(page).toHaveURL(pageData.Url.menTops)
-        await cataloguePage.product(pageData.catalogueItem.tank).click()
-        await expect(page).toHaveURL(await cataloguePage.getUrl(pageData.catalogueItem.tank))
+        let itemNumber: number = await cataloguePage.product.count()
+        let randomElement = Math.round(Math.floor(Math.random() * (itemNumber - 2)) +1 )
+        pageTitle = (await cataloguePage.productCardTitle.locator(`nth=${randomElement}`).innerText()).toString()
+        await cataloguePage.product.locator(`nth=${randomElement}`).click()
       });
     
     test("Verify Item page loads correctly", async ({itemPage}) => {
-        const itemName = pageData.catalogueItem.tank
-        await expect(itemPage.pageTitle).toHaveText(itemName)
+        await expect(itemPage.pageTitle).toBeVisible()
+        await expect(itemPage.pageTitle).toHaveText(pageTitle)
         for (let i = 0; i < itemPage.sizeOptions.length; i++) {
             const option = itemPage.sizeOptions[i];
             const size = pageData.itemPage.size[i]
@@ -38,8 +44,8 @@ test.describe("Item Page test suite", () => {
     test("Verify add to cart button functionality", async ({itemPage}) =>{     
         await itemPage.selectSIze(itemPage.sizeL)
         await expect(itemPage.sizeL).toHaveClass(/selected/)
-        await itemPage.selectColor(itemPage.colorBlue)
-        await expect(itemPage.colorBlue).toHaveClass(/selected/)
+        await itemPage.selectColor()
+        await expect(itemPage.colorOption).toHaveClass(/selected/)
         await itemPage.addItem()
         await expect(itemPage.addSuccess).toBeVisible()
     })

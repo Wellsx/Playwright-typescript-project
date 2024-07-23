@@ -1,34 +1,34 @@
 import { BasePage, expect } from "./basePage";
 
 export class LoginPage extends BasePage {
-  loginHeader = this.page.getByText("Customer Login");
-  signOutHeader = this.page.getByText("You are signed out");
-  emailField = this.page.locator("#email");
-  passwordField = this.page.getByLabel("Password");
-  signInButton = this.page.getByRole("button", { name: "Sign In" });
-  forgotPassword = this.page.getByRole("link", {
-    name: "Forgot Your Password?",
-  });
-  createAccountButton = this.page.locator("#maincontent").getByRole("link", { name: "Create an Account" });
-  navbarDropDownButton = this.page.getByRole("banner").locator("button").filter({ hasText: "Change" });
-  dropdownMenu = this.page.locator(".customer-menu");
-  signOutButton = this.page.getByRole("link", { name: "Sign Out" });
-  wishlistButton = this.page.getByRole("banner").getByRole("link", { name: "My Wish List" });
-  myAccountButton = this.page.getByRole("link", { name: "My Account" });
-  authcookie = "X-Magento-Vary";
+    public readonly loginHeader = this.page.getByText("Customer Login");
+    public readonly signOutHeader = this.page.getByText("You are signed out");
+    public readonly emailField = this.page.locator("#email");
+    public readonly passwordField = this.page.getByLabel("Password");
+    public readonly signInButton = this.page.getByRole("button", { name: "Sign In" });
+    //redirect links
+    public readonly forgotPassword = this.page.getByRole("link", { name: "Forgot Your Password?",});
+    public readonly createAccountButton = this.page.locator("#maincontent").getByRole("link", { name: "Create an Account" });
+    public readonly navbarDropDownButton = this.page.getByRole("banner").locator("button").filter({ hasText: "Change" });
+    //hamburger menu
+    public readonly dropdownMenu = this.page.locator(".customer-menu");
+    public readonly signOutButton = this.page.getByRole("link", { name: "Sign Out" });
+    public readonly wishlistButton = this.page.getByRole("banner").getByRole("link", { name: "My Wish List" });
+    public readonly myAccountButton = this.page.getByRole("link", { name: "My Account" });
+    public readonly authcookie = "X-Magento-Vary";
+    //error messages
+    public readonly emailError = this.page.locator("#email-error");
+    public readonly passwordError = this.page.locator("#pass-error");
+    public readonly invalidLoginError = this.page.getByRole("alert").locator("div").first();
 
-  emailError = this.page.locator("#email-error");
-  passwordError = this.page.locator("#pass-error");
-  invalidLoginError = this.page.getByRole("alert").locator("div").first();
-
-  async fillLoginInfo(email: string, password: string) {
-    await this.emailField.fill(email);
-    await this.passwordField.fill(password);
+    async fillLoginInfo(email: string, password: string): Promise<void> {
+      await this.emailField.fill(email);
+      await this.passwordField.fill(password);
   }
 
-  async clickSignIn() {
-    await expect(this.signInButton).toBeVisible()
-    await this.signInButton.click();
+    async clickSignIn(): Promise<void> {
+      await expect(this.signInButton).toBeVisible()
+      await this.signInButton.click();
   }
 
   async clickCreateAnAccount() {

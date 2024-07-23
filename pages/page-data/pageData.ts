@@ -18,8 +18,9 @@ export const Url = {
   gear: "/gear.html",
   gearLinks: ["/gear/bags.html", "/gear/fitness-equipment.html", "/gear/watches.html"],
   sale: "/sale.html",
-  search: "/catalogsearch/result/?q="
-
+  search: "/catalogsearch/result/?q=",
+  hoodie: "/circe-hooded-ice-fleece.html",
+  cart: "/checkout/cart/"
 };
 
 export const ErrorMessages = {
@@ -49,6 +50,7 @@ export const PageTitle = {
   womenTopsTitles: ["Jackets - Tops - Women", "Hoodies & Sweatshirts - Tops - Women", "Tees - Tops - Women", 
     "Bras & Tanks - Tops - Women"],
   womenBottoms: "Bottoms - Women",
+  cart: "Shopping Cart"
 };
 
 export const NavID = {
@@ -73,9 +75,13 @@ export const pageInfo = {
 }
 
 export const catalogueItem = {
-  tank: "Cassius Sparring Tank"
+  tank: "Cassius Sparring Tank",
+  hoodie: "Circe Hooded Ice Fleece"
 }
 
 export const itemPage = {
-  size: ["XS", "S", "M", "L", "XL"]
+  size: ["XS", "S", "M", "L", "XL"],
+  cBlue: "Blue",
+  cGray: "Gray",
+  cGreen: "Green",
 }
