@@ -14,7 +14,7 @@ test.describe("Item Page test suite", () => {
         pageTitle = (await cataloguePage.productCardTitle.locator(`nth=${randomElement}`).innerText()).toString()
         await cataloguePage.product.locator(`nth=${randomElement}`).click()
       });
-    
+
     test("Verify Item page loads correctly", async ({itemPage}) => {
         await expect(itemPage.pageTitle).toBeVisible()
         await expect(itemPage.pageTitle).toHaveText(pageTitle)
@@ -22,8 +22,9 @@ test.describe("Item Page test suite", () => {
             const option = itemPage.sizeOptions[i];
             const size = pageData.itemPage.size[i]
             await expect(option).toBeVisible()
-            await expect(option).toHaveText(size)       
+            await expect(option).toHaveText(size)
         }
+        await expect(itemPage.price).toBeVisible()
         await expect(itemPage.color).toBeVisible()
         await expect(itemPage.qty).toBeVisible()
         await expect(itemPage.addToCart).toBeVisible()
@@ -38,10 +39,10 @@ test.describe("Item Page test suite", () => {
         for (let i = 0; i < itemPage.sizeOptions.length; i++) {
             const option = itemPage.sizeOptions[i];
             await itemPage.selectSIze(option)
-            await expect(option).toHaveClass(/selected/)    
+            await expect(option).toHaveClass(/selected/)
         }
     })
-    test("Verify add to cart button functionality", async ({itemPage}) =>{     
+    test("Verify add to cart button functionality", async ({itemPage}) =>{
         await itemPage.selectSIze(itemPage.sizeL)
         await expect(itemPage.sizeL).toHaveClass(/selected/)
         await itemPage.selectColor()

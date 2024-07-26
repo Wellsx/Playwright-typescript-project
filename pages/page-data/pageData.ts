@@ -20,7 +20,8 @@ export const Url = {
   sale: "/sale.html",
   search: "/catalogsearch/result/?q=",
   hoodie: "/circe-hooded-ice-fleece.html",
-  cart: "/checkout/cart/"
+  cart: "/checkout/cart/",
+  shipping: "/checkout/#shipping"
 };
 
 export const ErrorMessages = {
@@ -47,7 +48,7 @@ export const PageTitle = {
   men: "Men",
   women: "Women",
   womenTops: "Tops - Women",
-  womenTopsTitles: ["Jackets - Tops - Women", "Hoodies & Sweatshirts - Tops - Women", "Tees - Tops - Women", 
+  womenTopsTitles: ["Jackets - Tops - Women", "Hoodies & Sweatshirts - Tops - Women", "Tees - Tops - Women",
     "Bras & Tanks - Tops - Women"],
   womenBottoms: "Bottoms - Women",
   cart: "Shopping Cart"

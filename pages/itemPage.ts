@@ -2,11 +2,12 @@ import { BasePage, expect, Locator } from "./basePage";
 
 export class ItemPage extends BasePage {
     public readonly pageTitle = this.page.locator(".page-title")
-    public readonly price = this.page.locator(".price")
+    public readonly price = this.page.locator(".product-info-price").locator(".price")
     public readonly availability = this.page.getByTitle('Availability')
     public readonly addToCart = this.page.locator("#product-addtocart-button")
     //item parameters
     public readonly sizeList = this.page.getByLabel('Size')
+    public readonly size = (index: number) => this.page.locator(".swatch-option.text").locator(`nth=${index}`)
     public readonly sizeXS = this.page.locator("#option-label-size-143-item-166")
     public readonly sizeS = this.page.locator("#option-label-size-143-item-167")
     public readonly sizeM = this.page.locator("#option-label-size-143-item-168")
@@ -31,7 +32,6 @@ export class ItemPage extends BasePage {
     public readonly addSuccess = this.page.locator('[data-ui-id="message-success"]')
 
     async selectSIze(size: Locator): Promise<void>{
-        await expect(this.sizeList).toBeVisible()
         await size.click()
     }
 

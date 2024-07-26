@@ -14,7 +14,7 @@ export class CartPage extends BasePage {
     //Summary
     public readonly estimateShipping = this.page.locator("#block-shipping-heading")
     public readonly country = this.page.locator('[name="country_id"]')
-    public readonly region = this.page.locator('[name="region"]')
+    public readonly region = this.page.locator('select[name="region_id"]')
     public readonly postcode = this.page.locator('[name="postcode"]')
     public readonly flatRate = this.page.locator("#s_method_flatrate_flatrate")
     public readonly bestWay = this.page.locator("#s_method_tablerate_bestway")
@@ -23,5 +23,5 @@ export class CartPage extends BasePage {
     public readonly discountCodeField = this.page.locator("#coupon_code")
     public readonly discountCodeError = this.page.locator("#coupon_code-error")
     public readonly applyDiscountButton = this.page.getByRole("button", {name: "Apply Discount"})
-    
+
 }
