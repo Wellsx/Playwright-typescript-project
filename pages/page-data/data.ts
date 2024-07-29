@@ -25,6 +25,10 @@ class Data {
   public readonly searchQuery = "T-shirt";
   public readonly invalidQuery = "iq";
 
+  public readonly country = "BA"
+  public readonly state = "Republika Srpska"
+  public readonly postcode = faker.location.zipCode("#####")
+
   save_email(email: string) {
     const user = { email: email };
     const filePath = path.join(__dirname, "registeredUser.json");

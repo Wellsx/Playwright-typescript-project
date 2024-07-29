@@ -39,4 +39,5 @@ export class CommonActions extends BasePage {
     await itemPage.addItem()
     await expect(itemPage.addSuccess).toBeVisible()
   }
+
 }

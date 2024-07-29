@@ -5,6 +5,7 @@ export class ItemPage extends BasePage {
     public readonly price = this.page.locator(".product-info-price").locator(".price")
     public readonly availability = this.page.getByTitle('Availability')
     public readonly addToCart = this.page.locator("#product-addtocart-button")
+    public readonly updateCart = this.page.getByRole('button', { name: 'Update Cart' })
     //item parameters
     public readonly sizeList = this.page.getByLabel('Size')
     public readonly size = (index: number) => this.page.locator(".swatch-option.text").locator(`nth=${index}`)
@@ -38,6 +39,11 @@ export class ItemPage extends BasePage {
     async selectColor(): Promise<void>{
         await expect(this.color).toBeVisible()
         await this.colorOption.click()
+    }
+
+    async typeQty(qty: string): Promise<void>{
+        await expect(this.qty).toBeVisible()
+        await this.qty.fill(qty)
     }
 
     async addItem(): Promise<void>{

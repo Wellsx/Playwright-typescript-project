@@ -21,10 +21,11 @@ export const Url = {
   search: "/catalogsearch/result/?q=",
   hoodie: "/circe-hooded-ice-fleece.html",
   cart: "/checkout/cart/",
+  editCartItem: "/checkout/cart/configure/id",
   shipping: "/checkout/#shipping"
 };
 
-export const ErrorMessages = {
+export const Messages = {
   requiredFIeldError: "This is a required field.",
   invalidEmailError: "Please enter a valid email address (Ex: johndoe@domain.com).",
   minimumPasswordError: "Minimum length of this field must be equal or greater than 8 symbols. Leading and trailing spaces will be ignored.",
@@ -34,7 +35,9 @@ export const ErrorMessages = {
   passwordWeak: "Weak",
   invalidLoginMessage: "The account sign-in was incorrect or your account is disabled temporarily. Please wait and try again later.",
   invalidSearch: "Minimum Search query length is 3 ",
-  qtyError: "Please enter a quantity greater than 0."
+  qtyError: "Please enter a quantity greater than 0.",
+  postcode: "Provided Zip/Postal Code seems to be invalid. Example: 12345-6789; 12345. If you believe it is the right one you can ignore this notice.",
+  emptyCart: "You have no items in your shopping cart. Click here to continue shopping."
 };
 
 export const PageTitle = {
@@ -86,3 +89,4 @@ export const itemPage = {
   cGray: "Gray",
   cGreen: "Green",
 }
+
